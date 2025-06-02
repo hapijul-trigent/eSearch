@@ -1,0 +1,18 @@
+{
+    "employees": [
+        {
+            "name": "John Doe",
+            "position": "Software Engineer",
+            "department": "Engineering",
+            "skills": ["Python", "FastAPI", "Machine Learning"],
+            "experience": "5 years"
+        },
+        {
+            "name": "Jane Smith",
+            "position": "Data Scientist",
+            "department": "Data Science",
+            "skills": ["Python", "TensorFlow", "Data Analysis"],
+            "experience": "3 years"
+        }
+    ]
+} 

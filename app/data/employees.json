@@ -1,0 +1,21 @@
+{
+    "employees": [
+      {
+        "id": 1,
+        "name": "Alice Johnson",
+        "skills": ["Python", "React", "AWS"],
+        "experience_years": 5,
+        "projects": ["E-commerce Platform", "Healthcare Dashboard"],
+        "availability": "available"
+      },
+      {
+        "id": 2,
+        "name": "Michael Rodriguez",
+        "skills": ["Machine Learning", "pandas", "scikit-learn"],
+        "experience_years": 4,
+        "projects": ["Patient Risk Prediction System"],
+        "availability": "available"
+      }
+    ]
+  }
+  
