@@ -1,3 +1,10 @@
+"""
+Data loading module for the Employee Search RAG application.
+
+This module handles loading and validation of employee data from JSON files.
+It provides functions to load employee records and validate their structure.
+"""
+
 import json
 import os
 import logging
@@ -6,6 +13,26 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def load_employee_docs(file_path="data/employees.json"):
+    """
+    Load employee data from a JSON file.
+
+    Args:
+        file_path (str): Path to the JSON file containing employee data.
+                        Defaults to "data/employees.json".
+
+    Returns:
+        list: List of employee dictionaries containing their information.
+
+    Raises:
+        FileNotFoundError: If the specified file doesn't exist.
+        json.JSONDecodeError: If the file contains invalid JSON.
+        ValueError: If the file doesn't contain any employee data.
+        Exception: For other unexpected errors during loading.
+
+    Example:
+        >>> employees = load_employee_docs("data/employees.json")
+        >>> print(f"Loaded {len(employees)} employees")
+    """
     try:
         # Get the absolute path to the file
         current_dir = os.path.dirname(os.path.abspath(__file__))

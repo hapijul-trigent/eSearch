@@ -1,3 +1,11 @@
+"""
+Main application module for the Employee Search RAG system.
+
+This module provides the FastAPI application and endpoints for the employee search
+system. It integrates the retriever and LLM chain components to provide a REST API
+for querying employee information.
+"""
+
 from fastapi import FastAPI, Request, HTTPException, Query
 from llm_chain import build_qa_chain
 import json
@@ -5,15 +13,44 @@ from typing import Optional, List
 from data_loader import load_employee_docs
 from schema import ChatRequest, ChatResponse, SearchResponse, Employee
 
-app = FastAPI()
-qa_chain = build_qa_chain()
+app = FastAPI(
+    title="Employee Search RAG API",
+    description="API for searching employee information using RAG",
+    version="1.0.0"
+)
 
 # Load employee data at startup
 employees = load_employee_docs()
 
+# Initialize components
+qa_chain = build_qa_chain()
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
+    """
+    Search endpoint for employee information.
+
+    This endpoint:
+    1. Takes a natural language query
+    2. Uses the RAG system to find relevant employees
+    3. Returns the results with source documents
+
+    Args:
+        query (Query): The search query containing the text to search for.
+
+    Returns:
+        dict: Search results including the answer and source documents.
+
+    Raises:
+        HTTPException: If there's an error processing the query.
+
+    Example:
+        >>> response = requests.post(
+        ...     "http://localhost:8000/search",
+        ...     json={"text": "Find Python developers"}
+        ... )
+        >>> print(response.json())
+    """
     try:
         if not request.query:
             raise HTTPException(status_code=400, detail="Query is empty")
