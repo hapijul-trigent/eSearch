@@ -27,43 +27,82 @@ uvicorn app.main:app --reload
 ## API Endpoints
 
 ### GET /employees/search
-Search for employees with optional filters.
+Direct search and filter employees based on various criteria.
 
 Query parameters:
-- `query` (required): Search query for employees
-- `department` (optional): Filter by department
-- `skill` (optional): Filter by skill
+- `name` (optional): Search by employee name (partial match)
+- `skills` (optional): Filter by skills (comma-separated list)
+- `min_experience` (optional): Filter by minimum years of experience
+- `availability` (optional): Filter by availability status
 
 Example:
 ```
-GET /employees/search?query=software engineers&department=Engineering&skill=Python
+GET /employees/search?name=alice&skills=Python,AWS&min_experience=3&availability=available
+```
+
+Response:
+```json
+{
+    "total": 1,
+    "employees": [
+        {
+            "id": 1,
+            "name": "Alice Johnson",
+            "skills": ["Python", "React", "AWS"],
+            "experience_years": 5,
+            "projects": ["E-commerce Platform", "Healthcare Dashboard"],
+            "availability": "available"
+        }
+    ]
+}
 ```
 
 ### POST /chat
-Send a query about employees.
+Send natural language queries about employees using RAG (Retrieval Augmented Generation).
 
-Request body:
+Request:
 ```json
 {
-    "query": "Who are the software engineers?"
+    "query": "Who are the employees with Python experience?"
+}
+```
+
+Response:
+```json
+{
+    "response": "Based on the employee data, Alice Johnson has 5 years of experience with Python skills."
 }
 ```
 
 ### GET /health
 Health check endpoint.
 
-## Data Structure
+## Data Models
 
-Employee data is stored in `data/employees.json`. Each employee record contains:
-- name
-- position
-- department
-- skills
-- experience
+The API uses Pydantic models for request/response validation:
+
+### ChatRequest
+- `query`: str - The query to process using RAG
+
+### ChatResponse
+- `response`: str - The response from the RAG system
+
+### Employee
+- `id`: int - Employee ID
+- `name`: str - Employee name
+- `skills`: List[str] - List of skills
+- `experience_years`: int - Years of experience
+- `projects`: List[str] - List of projects
+- `availability`: str - Availability status
+
+### SearchResponse
+- `total`: int - Total number of matching employees
+- `employees`: List[Employee] - List of matching employees
 
 ## Architecture
 
 - `main.py`: FastAPI application and endpoints
+- `schema.py`: Pydantic models for request/response validation
 - `llm_chain.py`: LangChain setup with Ollama (Gemma 3:1b)
 - `retriever.py`: Vector store setup with FAISS
 - `data_loader.py`: Employee data loading and processing

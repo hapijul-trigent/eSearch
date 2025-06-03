@@ -18,7 +18,8 @@ async def chat(request: ChatRequest):
         if not request.query:
             raise HTTPException(status_code=400, detail="Query is empty")
             
-        response = qa_chain.run(request.query)
+        response = qa_chain.invoke(request.query)
+        print(response)
         return ChatResponse(response=response)
         
     except Exception as e:

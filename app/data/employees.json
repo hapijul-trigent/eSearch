@@ -1,21 +1,212 @@
 {
-    "employees": [
-      {
-        "id": 1,
-        "name": "Alice Johnson",
-        "skills": ["Python", "React", "AWS"],
-        "experience_years": 5,
-        "projects": ["E-commerce Platform", "Healthcare Dashboard"],
-        "availability": "available"
-      },
-      {
-        "id": 2,
-        "name": "Michael Rodriguez",
-        "skills": ["Machine Learning", "pandas", "scikit-learn"],
-        "experience_years": 4,
-        "projects": ["Patient Risk Prediction System"],
-        "availability": "available"
-      }
-    ]
-  }
-  
+  "employees": [
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "skills": ["Python", "React", "AWS", "Machine Learning", "AI"],
+      "experience_years": 5,
+      "projects": ["E-commerce Platform", "Healthcare Dashboard"],
+      "availability": "available"
+    },
+    {
+      "id": 2,
+      "name": "Michael Rodriguez",
+      "skills": ["Machine Learning", "pandas", "scikit-learn"],
+      "experience_years": 4,
+      "projects": ["Patient Risk Prediction System"],
+      "availability": "available"
+    },
+    {
+      "id": 3,
+      "name": "Sara Kim",
+      "skills": ["Java", "Spring Boot", "MySQL"],
+      "experience_years": 6,
+      "projects": ["Inventory Management System", "Banking API"],
+      "availability": "unavailable"
+    },
+    {
+      "id": 4,
+      "name": "John Lee",
+      "skills": ["JavaScript", "Node.js", "MongoDB"],
+      "experience_years": 3,
+      "projects": ["Social Media App"],
+      "availability": "available"
+    },
+    {
+      "id": 5,
+      "name": "Priya Desai",
+      "skills": ["C#", ".NET", "Azure"],
+      "experience_years": 7,
+      "projects": ["Insurance Claims System"],
+      "availability": "unavailable"
+    },
+    {
+      "id": 6,
+      "name": "Tom Becker",
+      "skills": ["Go", "Docker", "Kubernetes"],
+      "experience_years": 4,
+      "projects": ["Microservices Platform"],
+      "availability": "available"
+    },
+    {
+      "id": 7,
+      "name": "Emily Zhang",
+      "skills": ["Python", "TensorFlow", "NLP"],
+      "experience_years": 5,
+      "projects": ["Chatbot", "Sentiment Analysis Tool"],
+      "availability": "available"
+    },
+    {
+      "id": 8,
+      "name": "Carlos Hernandez",
+      "skills": ["HTML", "CSS", "JavaScript"],
+      "experience_years": 2,
+      "projects": ["Portfolio Website", "Blog Engine"],
+      "availability": "available"
+    },
+    {
+      "id": 9,
+      "name": "Nina Patel",
+      "skills": ["React", "Redux", "TypeScript"],
+      "experience_years": 3,
+      "projects": ["Admin Dashboard"],
+      "availability": "unavailable"
+    },
+    {
+      "id": 10,
+      "name": "David O'Connor",
+      "skills": ["Rust", "WebAssembly", "GraphQL"],
+      "experience_years": 4,
+      "projects": ["Real-time Collaboration Tool"],
+      "availability": "available"
+    },
+    {
+      "id": 11,
+      "name": "Yuki Nakamura",
+      "skills": ["Swift", "iOS Development", "Core Data"],
+      "experience_years": 5,
+      "projects": ["Mobile Banking App"],
+      "availability": "available"
+    },
+    {
+      "id": 12,
+      "name": "Mohammed Ali",
+      "skills": ["Java", "Kafka", "Redis"],
+      "experience_years": 6,
+      "projects": ["Data Streaming Platform"],
+      "availability": "unavailable"
+    },
+    {
+      "id": 13,
+      "name": "Anna Schmidt",
+      "skills": ["Python", "Django", "PostgreSQL"],
+      "experience_years": 3,
+      "projects": ["Online Learning Platform"],
+      "availability": "available"
+    },
+    {
+      "id": 14,
+      "name": "Peter Novak",
+      "skills": ["PHP", "Laravel", "MySQL"],
+      "experience_years": 4,
+      "projects": ["CMS", "E-commerce Site"],
+      "availability": "available"
+    },
+    {
+      "id": 15,
+      "name": "Lina Gomez",
+      "skills": ["HTML", "Vue.js", "SASS"],
+      "experience_years": 2,
+      "projects": ["Marketing Website"],
+      "availability": "available"
+    },
+    {
+      "id": 16,
+      "name": "Ahmed Saeed",
+      "skills": ["Python", "PyTorch", "Computer Vision"],
+      "experience_years": 5,
+      "projects": ["Object Detection App"],
+      "availability": "unavailable"
+    },
+    {
+      "id": 17,
+      "name": "Rachel Green",
+      "skills": ["JavaScript", "Angular", "Firebase"],
+      "experience_years": 3,
+      "projects": ["Real-time Chat App"],
+      "availability": "available"
+    },
+    {
+      "id": 18,
+      "name": "Oliver Wang",
+      "skills": ["C++", "Unreal Engine", "Game Design"],
+      "experience_years": 6,
+      "projects": ["VR Simulation", "Multiplayer Game"],
+      "availability": "available"
+    },
+    {
+      "id": 19,
+      "name": "Isabella Rossi",
+      "skills": ["Ruby", "Rails", "Heroku"],
+      "experience_years": 4,
+      "projects": ["Startup MVP"],
+      "availability": "available"
+    },
+    {
+      "id": 20,
+      "name": "Ethan Wood",
+      "skills": ["Scala", "Spark", "Big Data"],
+      "experience_years": 5,
+      "projects": ["ETL Pipeline", "Data Analytics Dashboard"],
+      "availability": "unavailable"
+    },
+    {
+      "id": 21,
+      "name": "Grace Lin",
+      "skills": ["MATLAB", "Signal Processing", "Python"],
+      "experience_years": 7,
+      "projects": ["Audio Recognition System"],
+      "availability": "available"
+    },
+    {
+      "id": 22,
+      "name": "Javier Martinez",
+      "skills": ["R", "Data Visualization", "Statistics"],
+      "experience_years": 4,
+      "projects": ["Market Research Reports"],
+      "availability": "available"
+    },
+    {
+      "id": 23,
+      "name": "Sophie Dubois",
+      "skills": ["JavaScript", "Svelte", "REST APIs"],
+      "experience_years": 3,
+      "projects": ["Web-based CRM"],
+      "availability": "unavailable"
+    },
+    {
+      "id": 24,
+      "name": "Liam Patel",
+      "skills": ["Python", "Flask", "SQLite"],
+      "experience_years": 2,
+      "projects": ["Task Manager App"],
+      "availability": "available"
+    },
+    {
+      "id": 25,
+      "name": "Hannah Müller",
+      "skills": ["Perl", "Shell Scripting", "Linux"],
+      "experience_years": 8,
+      "projects": ["Automation Scripts", "Server Monitoring"],
+      "availability": "available"
+    },
+    {
+      "id": 26,
+      "name": "Oscar Jensen",
+      "skills": ["HTML", "CSS", "Bootstrap"],
+      "experience_years": 1,
+      "projects": ["Landing Page"],
+      "availability": "available"
+    }
+  ]
+}

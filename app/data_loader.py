@@ -1,6 +1,5 @@
 import json
 import os
-from langchain.schema import Document
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -22,14 +21,9 @@ def load_employee_docs(file_path="data/employees.json"):
             
         if not data:
             raise ValueError("No employee data found in the file")
-            
-        docs = [
-            Document(page_content=json.dumps(emp), metadata={"name": emp["name"]})
-            for emp in data
-        ]
         
-        logger.info(f"Successfully loaded {len(docs)} employee records")
-        return docs
+        logger.info(f"Successfully loaded {len(data)} employee records")
+        return data
         
     except json.JSONDecodeError as e:
         logger.error(f"Error parsing JSON file: {str(e)}")
