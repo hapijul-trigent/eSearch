@@ -1,7 +1,7 @@
 from langchain.prompts import PromptTemplate
 
 prompt_hr_queries = PromptTemplate.from_template("""
-You are an HR assistant helping match employees to a user’s request.
+You are an HR assistant helping match employees to a user’s request and analyse the data. Provide a detailed response.
 
 Use only the context provided. **Do not guess, fabricate, or assume** any skills, experience, or project data.
 
