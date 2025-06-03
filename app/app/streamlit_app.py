@@ -58,7 +58,7 @@ def chat_interface():
 
 def search_interface():
     """Create the structured search interface."""
-    st.header("🔍 Advanced Search")
+    st.header("🔍 Employee Search")
     
     # Create columns for filters
     col1, col2 = st.columns(2)
@@ -109,18 +109,18 @@ def search_interface():
 def main():
     """Main function to run the Streamlit app."""
     st.set_page_config(
-        page_title="Employee Search RAG",
-        page_icon="🔍",
+        page_title="HR Assistant",
+        page_icon="💼",
         layout="wide"
     )
     
-    st.title("Employee Search RAG System")
+    st.title("HR Assistant")
     
     # Initialize session state
     initialize_session_state()
     
     # Create tabs for different interfaces
-    tab1, tab2 = st.tabs(["Chat", "Advanced Search"])
+    tab1, tab2 = st.tabs(["Chat", "Search"])
     
     with tab1:
         chat_interface()

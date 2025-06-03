@@ -56,7 +56,7 @@ def get_llm() -> Ollama:
         stop=["Human:", "Assistant:"]
     )
 
-def get_qa_chain() -> Any:
+def get_qa_chain(prompt: PromptTemplate) -> Any:
     """
     Build and return a Question-Answering chain.
 
@@ -72,30 +72,7 @@ def get_qa_chain() -> Any:
         
         logger.info("Building vector store")
         retriever = get_retriever()
-        
-        prompt = PromptTemplate.from_template("""
-        You are an AI assistant helping match employees to a user’s project request.
 
-        Use only the provided context — do not guess or add information.
-
-        ### Context ###
-        {context}
-
-        ### Request ###
-        {question}
-
-        ### Instructions ###
-        - Identify employees who meet all criteria (skills, domain experience, availability).
-        - Write a natural, paragraph-style response:
-        - Introduce each matching candidate
-        - Include their name, experience, relevant projects, key skills, and availability
-        - After listing, provide a short comparison of the candidates
-        - End with a helpful follow-up question
-
-        Style: Professional, clear, and natural. No bullets. Bold names. No hallucination.
-
-        Answer:
-        """)
         
         # Create document chain
         document_chain = create_stuff_documents_chain(llm, prompt)

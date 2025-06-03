@@ -7,13 +7,14 @@ for querying employee information.
 """
 
 import logging
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-
+from typing import Optional, List
 from app.core.config import settings
 from app.core.schemas import ChatRequest, ChatResponse, SearchRequest, SearchResponse
 from app.services.llm_service import get_qa_chain
 from app.services.data_service import load_employee_docs
+from app.core.prompts import prompt_hr_queries
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -39,7 +40,7 @@ app.add_middleware(
 employees = load_employee_docs()
 
 # Initialize QA chain
-qa_chain = get_qa_chain()
+qa_chain = get_qa_chain(prompt=prompt_hr_queries)
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
@@ -66,19 +67,21 @@ async def chat(request: ChatRequest):
         logger.error(f"Error processing chat request: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
+from fastapi import Query
+
 @app.get("/employees/search", response_model=SearchResponse)
 async def search_employees(
-    name: str = None,
-    skills: list = None,
-    min_experience: int = None,
-    availability: str = None
+    name: Optional[str] = None,
+    skills: Optional[str] = Query(default=None, description="Comma-separated list of skills"),
+    min_experience: Optional[int] = None,
+    availability: Optional[str] = None
 ):
     """
     Search endpoint for employee information.
 
     Args:
         name (str, optional): Search by employee name.
-        skills (list, optional): Filter by skills.
+        skills (str, optional): Comma-separated list of skills.
         min_experience (int, optional): Minimum years of experience.
         availability (str, optional): Filter by availability status.
 
@@ -90,43 +93,42 @@ async def search_employees(
     """
     try:
         filtered_employees = employees.copy()
-        
-        # Apply filters
+
+        # Filter by name
         if name:
             filtered_employees = [
-                emp for emp in filtered_employees 
+                emp for emp in filtered_employees
                 if name.lower() in emp["name"].lower()
             ]
-            
+
+        # Filter by skills (comma-separated)
         if skills:
-            skill_list = [s.strip().lower() for s in skills[0].split(",")]
+            skill_list = [s.strip().lower() for s in skills.split(",")]
             filtered_employees = [
-                emp for emp in filtered_employees 
-                if any(skill in [s.lower() for s in emp["skills"]] for skill in skill_list)
+                emp for emp in filtered_employees
+                if all(skill in [s.lower() for s in emp["skills"]] for skill in skill_list)
             ]
-            
+
+
+        # Filter by experience
         if min_experience is not None:
             filtered_employees = [
-                emp for emp in filtered_employees 
+                emp for emp in filtered_employees
                 if emp["experience_years"] >= min_experience
             ]
-            
+
+        # Filter by availability
         if availability:
             filtered_employees = [
-                emp for emp in filtered_employees 
+                emp for emp in filtered_employees
                 if emp["availability"].lower() == availability.lower()
             ]
-        
+
         return SearchResponse(
             total=len(filtered_employees),
             employees=filtered_employees
         )
-        
+
     except Exception as e:
         logger.error(f"Error processing search request: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/health")
-async def health_check():
-    """Health check endpoint."""
-    return {"status": "healthy"} 
